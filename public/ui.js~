@@ -1,0 +1,41 @@
+//---- ACEエディタを使用するための設定
+var aceEditor = ace.edit("source_code");
+
+//---- ACEエディタのオプション
+aceEditor.setOptions({
+    enableBasicAutocompletion: true,  // コードの補完
+    enableLiveAutocompletion: true,   // コード補完の候補を表示
+    enableSnippets: true,             // 補完でのコードスニペット使用
+});
+
+//---- 実行ボタンが押された時の処理
+$("#run_button").on("click", function(event){
+    runCode();
+});
+//--- Ctrl-Enterが押された時の処理
+aceEditor.commands.addCommand({
+    bindKey: {win: "Ctrl-Enter", mac:"Ctrl-Enter"},
+    exec: runCode,
+});
+/*
+//---- シンタックスハイライトの設定
+function setEditorLanguage(language){
+    var languageToMode = { 
+	ruby: "ruby",     // Rubyモード
+	python: "python", // Pythonモード
+	c: "c_cpp",       // C言語モード
+    };
+    var mode = languageToMode[language];
+    aceEditor.getSession().setMode("ace/mode/" + mode);
+}
+
+//---- デフォルトの言語をRubyに
+$("#language").val("ruby");
+setEditorLanguage("ruby");
+
+//---- 言語を変更した時にACEエディタの言語モードも変更する
+$("#language").on("change",function(event){
+    setEditorLanguage(this.value);
+});
+*/
+editor.getSession().setMode("ace/mode/html");
